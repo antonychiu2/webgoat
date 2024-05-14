@@ -48,7 +48,7 @@ public class MD5 {
         try {
           System.out.println(MD5.getHashString(new File(element)) + " " + element);
         } catch (IOException x) {
-          System.err.println(x.getMessage());
+          System.err.println("Unexpected error: mobb-ebe27509b775d76195564f618f841fa3");
         }
       }
     }
