@@ -51,6 +51,11 @@ jobs:
           ids=$(echo "$response" | jq -r --arg sha "$head_sha" '.[] | select(.commit_sha == $sha) | .id')
           echo ids=$ids
           
+          if [ -z "$ids" ]; then
+            echo "Error: No matching IDs found for the given head SHA $head_sha." >&2
+            exit 1
+          fi
+
           echo Initialize sarif_output.json with the base structure
           echo '{
           	"runs": [],
@@ -110,9 +115,13 @@ jobs:
         shell: bash -l {0}
 
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: my-artifact
           path: sarif_output.json
+
+      
+      
        
       - name: Dump GitHub context
         env:
