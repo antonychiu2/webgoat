@@ -151,11 +151,12 @@ public class SqlInjectionLesson8 extends AssignmentEndpoint {
     String time = sdf.format(cal.getTime());
 
     String logQuery =
-        "INSERT INTO access_log (time, action) VALUES ('" + time + "', ?)";
+        "INSERT INTO access_log (time, action) VALUES (?, ?)";
 
     try {
       PreparedStatement statement = connection.prepareStatement(logQuery, TYPE_SCROLL_SENSITIVE, CONCUR_UPDATABLE);
       statement.setString(1, action);
+      statement.setString(1, time);
       statement.executeUpdate();
     } catch (SQLException e) {
       System.err.println(e.getMessage());
