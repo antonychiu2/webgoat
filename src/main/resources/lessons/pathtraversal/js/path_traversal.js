@@ -21,7 +21,7 @@ webgoat.customjs.profileUploadFix = function () {
     formData.append("uploadedFileFix", picture);
     formData.append("fullNameFix", $("#fullNameFix").val());
     formData.append("emailFix", $("#emailFix").val());
-    formData.append("passwordFix", $("#passwordFix").val());
+    formData.append("passwordFix", DOMPurify.sanitize($("#passwordFix").val()));
     return formData;
 }
 
