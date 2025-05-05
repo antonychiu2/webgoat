@@ -53,8 +53,7 @@ public class TokenTest {
             .compact();
     log.debug(token);
     Jwt jwt = Jwts.parser().setSigningKey("qwertyqwerty1234").parse(token);
-    jwt =
-        Jwts.parser()
+    Jwts.parser()
             .setSigningKeyResolver(
                 new SigningKeyResolverAdapter() {
                   @Override
