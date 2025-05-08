@@ -70,7 +70,7 @@ public class ProfileZipSlip extends ProfileUploadBase {
       Enumeration<? extends ZipEntry> entries = zip.entries();
       while (entries.hasMoreElements()) {
         ZipEntry e = entries.nextElement();
-        File f = new File(tmpZipDirectory.toFile(), e.getName());
+        File f = new File(tmpZipDirectory.toFile(), getRelativePath(e.getName()));
         InputStream is = zip.getInputStream(e);
         Files.copy(is, f.toPath(), StandardCopyOption.REPLACE_EXISTING);
       }
@@ -78,6 +78,24 @@ public class ProfileZipSlip extends ProfileUploadBase {
       return isSolved(currentImage, getProfilePictureAsBase64());
     } catch (IOException e) {
       return failed(this).output(e.getMessage()).build();
+    }
+  }
+
+  private static String getRelativePath(String path) {
+    String basePath;
+    String filePath;
+  
+    try {
+      basePath = new File(".").getCanonicalPath() + File.separator;
+      filePath = new File(path).getCanonicalPath();
+    } catch (IOException e) {
+      throw new RuntimeException("Potential directory traversal attempt", e);
+    }
+  
+    if (filePath.startsWith(basePath)) {
+      return filePath.substring(basePath.length());
+    } else {
+      throw new RuntimeException("Potential directory traversal attempt");
     }
   }
 
