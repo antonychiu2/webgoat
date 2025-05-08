@@ -69,7 +69,7 @@ public class VulnerableTaskHolder implements Serializable {
           log.info(line);
         }
       } catch (IOException e) {
-        log.error("IO Exception", e);
+        log.error("IO Exception", "Unexpected error: mobb-d8da2a50d11e51e2489e71b30a5305bc");
       }
     }
   }

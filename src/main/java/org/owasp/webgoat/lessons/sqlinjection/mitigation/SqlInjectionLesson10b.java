@@ -42,6 +42,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @RestController
 @AssignmentHints(
@@ -54,6 +56,7 @@ import org.springframework.web.bind.annotation.RestController;
     })
 public class SqlInjectionLesson10b extends AssignmentEndpoint {
 
+  private static Logger log4jLogger = LogManager.getLogger(SqlInjectionLesson10b.class);
   @PostMapping("/SqlInjectionMitigations/attack10b")
   @ResponseBody
   public AttackResult completed(@RequestParam String editor) {
@@ -127,7 +130,7 @@ public class SqlInjectionLesson10b extends AssignmentEndpoint {
     try {
       javaFileObject = new JavaObjectFromString("TestClass.java", javaFileContents.toString());
     } catch (Exception exception) {
-      exception.printStackTrace();
+      log4jLogger.error("Unexpected error: mobb-b7f6f80ecf8f2d2ae4413b89dc0ffab0");
     }
     return javaFileObject;
   }

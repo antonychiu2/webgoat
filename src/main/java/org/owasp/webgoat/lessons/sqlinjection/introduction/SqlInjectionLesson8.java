@@ -157,7 +157,7 @@ public class SqlInjectionLesson8 extends AssignmentEndpoint {
       Statement statement = connection.createStatement(TYPE_SCROLL_SENSITIVE, CONCUR_UPDATABLE);
       //statement.executeUpdate(logQuery);
     } catch (SQLException e) {
-      System.err.println(e.getMessage());
+      System.err.println("Unexpected error: mobb-876477797ff7b73234570f3fff03a6a7");
     }
   }
 }

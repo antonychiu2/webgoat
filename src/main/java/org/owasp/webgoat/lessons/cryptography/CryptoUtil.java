@@ -69,7 +69,7 @@ public class CryptoUtil {
 
       log.info("signe the signature with result: {}", signature);
     } catch (Exception e) {
-      log.error("Signature signing failed", e);
+      log.error("Signature signing failed", "Unexpected error: mobb-5ef0c431ef598992c82d93db7ecff025");
     }
 
     log.debug("end signMessage");
