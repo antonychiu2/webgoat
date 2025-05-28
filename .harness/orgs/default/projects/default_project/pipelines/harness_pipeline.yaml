@@ -62,8 +62,12 @@ pipeline:
                     command: |-
                       echo "Running Mobb with cx_result.json..."
                       ls -lah
-                      cat cx_result.json || echo "File not found!"
-                      npx mobbdev@latest --help
+                      env
+                      npx mobbdev@latest analyze \
+                        -f cx_result.json \
+                        -r "$HARNESS_REPO_URL" \
+                        --ref "$HARNESS_GIT_BRANCH" \
+                        --api-key <+secrets.getValue("org.mobb-api-token")>
                   when:
                     stageStatus: All
           sharedPaths:
