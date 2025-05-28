@@ -67,7 +67,7 @@ pipeline:
                         -f cx_result.json \
                         -r "$HARNESS_REPO_URL" \
                         --ref "$HARNESS_GIT_BRANCH" \
-                        --api-key <+secrets.getValue("org.mobb-api-token")>
+                        --api-key <+secrets.getValue("org.mobb_api_token")>
                   when:
                     stageStatus: All
           sharedPaths:
