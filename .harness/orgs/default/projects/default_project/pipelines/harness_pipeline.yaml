@@ -44,6 +44,8 @@ pipeline:
                       log:
                         level: info
                       fail_on_severity: none
+                      args:
+                        cli: "--output-name ./report.json"
                     auth:
                       access_token: <+secrets.getValue("org.cx-token")>
                       type: apiKey
