@@ -45,7 +45,7 @@ pipeline:
                         level: info
                       fail_on_severity: none
                     auth:
-                      access_token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI4NmNkNGM5Yi1kOTcyLTRjOGMtYjQ1ZS1kNDg4NjgxNDY5ZTkifQ.eyJpYXQiOjE3MTc0MzQwODQsImp0aSI6ImU4NTk2YWMwLTMwOTctNDFmZC04ZjgyLTEyYzRmMDY4NGQwNSIsImlzcyI6Imh0dHBzOi8vZGV1LmlhbS5jaGVja21hcngubmV0L2F1dGgvcmVhbG1zL21vYmItbmZyIiwiYXVkIjoiaHR0cHM6Ly9kZXUuaWFtLmNoZWNrbWFyeC5uZXQvYXV0aC9yZWFsbXMvbW9iYi1uZnIiLCJzdWIiOiIxNjMzZjg4My0wNzllLTQ2NDItYjdiMy02ZDQ4OWFhZDBiN2IiLCJ0eXAiOiJPZmZsaW5lIiwiYXpwIjoiYXN0LWFwcCIsInNlc3Npb25fc3RhdGUiOiJmYWI0OGU3OC01YTk1LTQ1NzItYjFkOS0wYWY4NTE5NzY3NDIiLCJzY29wZSI6IiBvZmZsaW5lX2FjY2VzcyIsInNpZCI6ImZhYjQ4ZTc4LTVhOTUtNDU3Mi1iMWQ5LTBhZjg1MTk3Njc0MiJ9.PbWpNkd7_00uYKvdf5wOC-d8iFenKViQ0eodGC2siCM
+                      access_token: <+secrets.getValue("project.cx-token")>
                       type: apiKey
                     tool:
                       project_name: Webgoat
