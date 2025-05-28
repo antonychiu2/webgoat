@@ -63,4 +63,6 @@ pipeline:
                       echo "Running Mobb with cx_result.json..."
                       ls -lah
                       cat cx_result.json || echo "File not found!"
-                      npx mobbdev@latest --scan-file cx_result.json
+                      npx mobbdev@latest --help
+                  when:
+                    stageStatus: All
