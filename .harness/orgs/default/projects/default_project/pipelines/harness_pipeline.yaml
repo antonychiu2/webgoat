@@ -57,10 +57,11 @@ pipeline:
                   name: Mobb Autofixer
                   identifier: Mobb_Autofixer
                   spec:
-                    shell: Sh
+                    connectorRef: account.harnessImage
                     image: node:20
+                    shell: Sh
                     command: |-
-                      ls -la
-                      npx mobbdev@latest
+                      ls -lahR
+                      npx mobbdev@latest --help
           buildIntelligence:
             enabled: false
