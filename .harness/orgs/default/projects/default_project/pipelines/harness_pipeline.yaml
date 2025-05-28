@@ -53,17 +53,6 @@ pipeline:
                       project_name: Webgoat
               - step:
                   type: Run
-                  name: Copy Checkmarx Result
-                  identifier: CopyCxResult
-                  spec:
-                    shell: Sh
-                    image: alpine
-                    command: |
-                      echo "Copying Checkmarx result from /tmp..."
-                      cp /tmp/cx_result.json ./cx_result.json
-                      ls -lah ./cx_result.json
-              - step:
-                  type: Run
                   name: Mobb Autofixer
                   identifier: Mobb_Autofixer
                   spec:
