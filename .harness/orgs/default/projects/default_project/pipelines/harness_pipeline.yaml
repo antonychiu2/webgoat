@@ -45,7 +45,7 @@ pipeline:
                         level: info
                       fail_on_severity: none
                     auth:
-                      access_token: <+secrets.getValue("project.cx-token")>
+                      access_token: <+secrets.getValue("org.cx-token")>
                       type: apiKey
                     tool:
                       project_name: Webgoat
