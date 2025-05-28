@@ -12,7 +12,7 @@ pipeline:
         build: <+input>
   stages:
     - stage:
-        name: SAST
+        name: Checkmarx Scan and Fix
         identifier: Checkmarx
         description: ""
         type: CI
@@ -49,12 +49,16 @@ pipeline:
                       type: apiKey
                     tool:
                       project_name: Webgoat
+                  outputs:
+                    - name: copy_cx_result
+                      command: cp /tmp/cx_result.json ./cx_result.json
               - step:
                   type: Run
                   name: Mobb Autofixer
                   identifier: Mobb_Autofixer
                   spec:
                     shell: Sh
+                    image: node:20
                     command: |-
                       ls -la
                       npx mobbdev@latest
