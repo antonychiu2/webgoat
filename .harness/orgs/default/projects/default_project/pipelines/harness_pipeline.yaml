@@ -45,7 +45,7 @@ pipeline:
                         level: info
                       fail_on_severity: none
                       args:
-                        cli: "--output-name ./report.json"
+                        cli: "--output-path ."
                     auth:
                       access_token: <+secrets.getValue("org.cx-token")>
                       type: apiKey
@@ -66,3 +66,7 @@ pipeline:
                       npx mobbdev@latest --help
                   when:
                     stageStatus: All
+          sharedPaths:
+            - /shared
+          buildIntelligence:
+            enabled: false
