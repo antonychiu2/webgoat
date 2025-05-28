@@ -49,5 +49,14 @@ pipeline:
                       type: apiKey
                     tool:
                       project_name: Webgoat
+              - step:
+                  type: Run
+                  name: Mobb Autofixer
+                  identifier: Mobb_Autofixer
+                  spec:
+                    shell: Sh
+                    command: |-
+                      ls -la
+                      npx mobbdev@latest
           buildIntelligence:
             enabled: false
