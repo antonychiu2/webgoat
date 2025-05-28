@@ -49,9 +49,17 @@ pipeline:
                       type: apiKey
                     tool:
                       project_name: Webgoat
-                  outputs:
-                    - name: copy_cx_result
-                      command: cp /tmp/cx_result.json ./cx_result.json
+              - step:
+                  type: Run
+                  name: Copy Checkmarx Result
+                  identifier: CopyCxResult
+                  spec:
+                    shell: Sh
+                    image: alpine
+                    command: |
+                      echo "Copying Checkmarx result from /tmp..."
+                      cp /tmp/cx_result.json ./cx_result.json
+                      ls -lah ./cx_result.json
               - step:
                   type: Run
                   name: Mobb Autofixer
@@ -61,7 +69,7 @@ pipeline:
                     image: node:20
                     shell: Sh
                     command: |-
-                      ls -lahR
-                      npx mobbdev@latest --help
-          buildIntelligence:
-            enabled: false
+                      echo "Running Mobb with cx_result.json..."
+                      ls -lah
+                      cat cx_result.json || echo "File not found!"
+                      npx mobbdev@latest --scan-file cx_result.json
