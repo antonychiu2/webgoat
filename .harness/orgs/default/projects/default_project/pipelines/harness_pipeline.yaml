@@ -66,8 +66,8 @@ pipeline:
                           env
                           npx mobbdev@latest analyze \
                             -f cx_result.json \
-                            -r "$HARNESS_REPO_URL" \
-                            --ref "$HARNESS_GIT_BRANCH" \
+                            -r "$CI_REPO_REMOTE" \
+                            --ref "$CI_COMMIT_BRANCH" \
                             --api-key <+secrets.getValue("org.mobb_api_token")>
                       when:
                         stageStatus: All
