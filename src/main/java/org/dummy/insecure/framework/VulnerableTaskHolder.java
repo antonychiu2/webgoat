@@ -1,3 +1,4 @@
+
 package org.dummy.insecure.framework;
 
 import java.io.BufferedReader;
