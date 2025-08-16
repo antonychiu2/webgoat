@@ -34,10 +34,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 @RestController
 public class SqlInjectionLesson6b extends AssignmentEndpoint {
 
+  private static Logger log4jLogger = LogManager.getLogger(SqlInjectionLesson6b.class);
   private final LessonDataSource dataSource;
 
   public SqlInjectionLesson6b(LessonDataSource dataSource) {
@@ -72,7 +75,7 @@ public class SqlInjectionLesson6b extends AssignmentEndpoint {
         // do nothing
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      log4jLogger.error("Unexpected error: mobb-98b8fb45a334e2f5e61b9b09b5c7ed43");
       // do nothing
     }
     return (password);
