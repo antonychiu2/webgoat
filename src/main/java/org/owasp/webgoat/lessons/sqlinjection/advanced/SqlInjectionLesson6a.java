@@ -63,15 +63,24 @@ public class SqlInjectionLesson6a extends AssignmentEndpoint {
     String query = "";
     try (Connection connection = dataSource.getConnection()) {
       boolean usedUnion = true;
-      query = "SELECT * FROM user_data WHERE last_name = '" + accountName + "'";
+      query = "SELECT * FROM user_data WHERE last_name = '?'";
       // Check if Union is used
       if (!accountName.matches("(?i)(^[^-/*;)]*)(\\s*)UNION(.*$)")) {
         usedUnion = false;
       }
-      try (Statement statement =
-          connection.createStatement(
-              ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
-        ResultSet results = statement.executeQuery(query);
+      try (PreparedStatement statement =
+          connection.prepareStatement(
+              query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
+        try {
+            statement.setInt(1, Math.round(Float.parseFloat(accountName)));
+        } catch (NumberFormatException e) {
+            // MOBB: consider printing this message to logger: mobb-04ee1299a334ca1ac66206a199f51a6a: Failed to convert input to type integer
+
+            // MOBB: using a default value for the SQL parameter in case the input is not convertible.
+            // This is important for preventing users from causing a denial of service to this application by throwing an exception here.
+            statement.setInt(1, 0);
+        }
+        ResultSet results = statement.executeQuery();
 
         if ((results != null) && results.first()) {
           ResultSetMetaData resultsMetaData = results.getMetaData();
