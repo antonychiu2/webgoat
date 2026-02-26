@@ -37,7 +37,7 @@ $(document).ready(function () {
                 var comment = html.replace('USER', result[i].user);
                 comment = comment.replace('DATETIME', result[i].dateTime);
                 comment = comment.replace('COMMENT', result[i].text);
-                $("#list").append(comment);
+                $("#list").append(DOMPurify.sanitize(comment));
             }
 
         });
